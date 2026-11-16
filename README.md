@@ -51,5 +51,4 @@ dotnet add package MoonFlat --version 0.1.0-alpha.1
 
 See [COMPATIBILITY.md](COMPATIBILITY.md) for retained features and known gaps, and [UPSTREAMS.md](UPSTREAMS.md) for lineage and third-party notices. The inherited [LICENSE](LICENSE) is included in built packages.
 
-This is an unpublished standalone candidate. A public GitHub repository and package release still need to be prepared.
 
