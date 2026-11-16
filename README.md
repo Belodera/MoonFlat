@@ -1,6 +1,6 @@
 # MoonFlat
 
-MoonFlat is a MoonSharp-derived Lua interpreter for .NET: a standalone Lua scripting library with a MoonSharp-compatible API, CLR interop, compact table storage, configurable VM stacks, and selected Luau-style iteration support. It keeps the `MoonSharp.Interpreter` namespace and assembly identity for existing integrations, with its own project and NuGet package identity.
+MoonFlat is a standalone Lua scripting library for .NET, derived from MoonSharp. It provides a MoonSharp-compatible API, CLR interop, compact table storage, configurable VM stacks, and selected Luau-style iteration support. It keeps the `MoonSharp.Interpreter` namespace and assembly identity for existing integrations, with its own project and NuGet package identity.
 
 ## Included
 
@@ -17,21 +17,21 @@ MoonFlat is a MoonSharp-derived Lua interpreter for .NET: a standalone Lua scrip
 dotnet run --project examples/Basic/Basic.csproj
 ```
 
-Expected output: `Hello, MoonFlat`.
+The program prints `Hello, MoonFlat`.
 
-Run the regression checks:
+Run the regression checks with this command.
 
 ```powershell
 dotnet run --project tests/MoonFlat.Regression/MoonFlat.Regression.csproj
 ```
 
-Build the library:
+Build the library with this command.
 
 ```powershell
 dotnet build src/MoonSharp.Interpreter/MoonFlat.csproj -c Release
 ```
 
-Verify the packed NuGet package from a separate consumer project:
+Verify the packed NuGet package from a separate consumer project with these commands.
 
 ```powershell
 dotnet pack src/MoonSharp.Interpreter/MoonFlat.csproj -c Release -o artifacts/packages
@@ -39,7 +39,7 @@ dotnet restore tests/MoonFlat.PackageSmoke/MoonFlat.PackageSmoke.csproj --source
 dotnet run --project tests/MoonFlat.PackageSmoke/MoonFlat.PackageSmoke.csproj -c Release --no-restore
 ```
 
-The package metadata is recorded in [moonflat-release.json](moonflat-release.json); no package has been published. The assembly remains `MoonSharp.Interpreter` version `2.0.0.0` to retain its inherited identity. A clean frozen-source run on Cloudflare Containers with .NET SDK 9.0.110 built the library, passed all 12 regression checks, ran the example, and verified a separate consumer could restore and use the packed NuGet package. The library package targets `netstandard2.1`; the example and verification apps target .NET 9.
+The package metadata is recorded in [moonflat-release.json](moonflat-release.json), and no package has been published. The assembly remains `MoonSharp.Interpreter` version `2.0.0.0` to retain its inherited identity. A clean frozen-source run on Cloudflare Containers with .NET SDK 9.0.110 built the library, passed all 12 regression checks, ran the example, and verified a separate consumer could restore and use the packed NuGet package. The library package targets `netstandard2.1`, and the example and verification apps target .NET 9.
 
 ## Install after publication
 
