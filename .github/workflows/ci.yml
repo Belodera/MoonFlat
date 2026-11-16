@@ -1,0 +1,31 @@
+name: MoonFlat CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-test-pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 9.0.x
+      - name: Check package metadata
+        run: python3 eng/verify-release-metadata.py
+      - name: Build library
+        run: dotnet build src/MoonSharp.Interpreter/MoonFlat.csproj --configuration Release
+      - name: Run fork regressions
+        run: dotnet run --project tests/MoonFlat.Regression/MoonFlat.Regression.csproj --configuration Release
+      - name: Run example
+        run: dotnet run --project examples/Basic/Basic.csproj --configuration Release
+      - name: Pack MoonFlat
+        run: dotnet pack src/MoonSharp.Interpreter/MoonFlat.csproj --configuration Release --no-build --output artifacts/packages
+      - name: Restore package consumer from local package
+        run: dotnet restore tests/MoonFlat.PackageSmoke/MoonFlat.PackageSmoke.csproj --source artifacts/packages
+      - name: Run installed package smoke check
+        run: dotnet run --project tests/MoonFlat.PackageSmoke/MoonFlat.PackageSmoke.csproj --configuration Release --no-restore

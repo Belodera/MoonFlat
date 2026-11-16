@@ -1,0 +1,9 @@
+{
+  "project": "MoonFlat",
+  "packageId": "MoonFlat",
+  "version": "0.1.0-alpha.1",
+  "assemblyName": "MoonSharp.Interpreter",
+  "assemblyVersion": "2.0.0.0",
+  "targetFramework": "netstandard2.1",
+  "status": "unpublished extraction candidate"
+}
